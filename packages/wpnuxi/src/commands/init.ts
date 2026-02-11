@@ -117,6 +117,7 @@ export default defineCommand({
       p.log.error('Invalid WordPress URL. Must start with http:// or https://')
       process.exit(1)
     }
+    wpUrl = wpUrl.replace(/\/+$/, '')
 
     // Template
     let template = args.template
@@ -247,11 +248,15 @@ export default defineCommand({
     if (!args['skip-install']) {
       s.start(`Installing dependencies with ${pm}...`)
       try {
-        execSync(`${pm} install`, { cwd: targetDir, stdio: 'ignore' })
+        execSync(`${pm} install`, { cwd: targetDir, stdio: 'pipe' })
         s.stop('Dependencies installed.')
       }
-      catch {
+      catch (err: any) {
         s.stop('Dependencies installed.')
+        const stderr = err?.stderr?.toString()?.trim()
+        if (stderr) {
+          p.log.warn(stderr)
+        }
       }
     }
 

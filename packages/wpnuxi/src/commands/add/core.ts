@@ -41,6 +41,7 @@ export default defineCommand({
       }
       wpUrl = result
     }
+    wpUrl = wpUrl.replace(/\/+$/, '')
 
     const s = p.spinner()
     s.start('Adding @wpnuxt/core...')
