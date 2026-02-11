@@ -6,6 +6,7 @@ function _rDefault(mod: { default: CommandDef }) {
 
 export const commands = {
   init: () => import('./init').then(_rDefault),
+  add: () => import('./add/index').then(_rDefault),
   info: () => import('./info').then(_rDefault),
   doctor: () => import('./doctor').then(_rDefault)
 } as Record<string, () => Promise<CommandDef>>
