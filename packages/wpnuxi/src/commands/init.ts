@@ -54,6 +54,12 @@ export default defineCommand({
     add: {
       type: 'string',
       description: 'Modules to add for minimal template (comma-separated: blocks,auth)'
+    },
+    blueprint: {
+      type: 'boolean',
+      description: 'Use Blueprint Playground as WordPress environment',
+      alias: 'b',
+      default: false
     }
   },
   async run({ args }) {
@@ -84,8 +90,11 @@ export default defineCommand({
 
     // WordPress environment
     let wpUrl = args['wordpress-url']
-    let usedPlayground = false
-    if (!wpUrl) {
+    let usedPlayground = args.blueprint
+    if (usedPlayground) {
+      wpUrl = DEFAULT_WP_URL
+    }
+    else if (!wpUrl) {
       const wpEnv = await p.select({
         message: 'WordPress environment',
         initialValue: 'playground',
