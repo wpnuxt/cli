@@ -104,10 +104,9 @@ watch(isAuthenticated, (value) => {
 <style scoped>
 .login-page {
   display: flex;
-  min-height: 100vh;
+  min-height: 50vh;
   align-items: center;
   justify-content: center;
-  background: #f9fafb;
 }
 .login-form {
   width: 100%;
@@ -142,7 +141,7 @@ watch(isAuthenticated, (value) => {
 }
 .form-row input:focus {
   outline: none;
-  border-color: #3b82f6;
+  border-color: #9c8e1b;
   box-shadow: 0 0 0 2px rgba(59,130,246,.3);
 }
 .error {
@@ -153,7 +152,7 @@ watch(isAuthenticated, (value) => {
 button[type="submit"] {
   width: 100%;
   padding: 0.5rem 1rem;
-  background: #3b82f6;
+  background: #9c8e1b;
   color: #fff;
   font-weight: 500;
   border: none;
